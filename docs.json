@@ -3,9 +3,9 @@
   "theme": "almond",
   "name": "Kartik's Vault",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#009689",
+    "light": "#00BBA7",
+    "dark": "#009689"
   },
   "favicon": "/favicon.svg",
   "logo": {
@@ -16,14 +16,9 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:business.kartikwalia@gmail.com"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://app.mintlify.com"
-    }
+    ]
   },
   "contextual": {
     "options": [
@@ -39,9 +34,9 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/thekartikwalia",
+      "github": "https://github.com/thekartikwalia",
+      "linkedin": "https://www.linkedin.com/in/thekartikwalia/"
     }
   },
   "navigation": {
