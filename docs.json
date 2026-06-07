@@ -1,38 +1,13 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Mintlify Starter Kit",
+  "theme": "almond",
+  "name": "Kartik's Vault",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
     "dark": "#15803D"
   },
   "favicon": "/favicon.svg",
-  "navigation": {
-    "pages": [
-      {
-        "group": "Getting Started",
-        "pages": [
-          "index",
-          "quickstart"
-        ]
-      }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
-  },
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
@@ -68,5 +43,60 @@
       "github": "https://github.com/mintlify",
       "linkedin": "https://linkedin.com/company/mintlify"
     }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Home",
+        "icon": "house",
+        "groups": [
+          { "group": "Getting Started", "pages": ["index","quickstart"] }
+        ]
+      },
+      {
+        "tab": "Core CS",
+        "icon": "code",
+        "groups": [
+          { "group": "Foundations Root", "pages": ["core-cs/index"] },
+          { "group": "Assembly", "pages": ["core-cs/assembly/index"] },
+          { "group": "Foundations", "pages": ["core-cs/foundations/index"] },
+          { "group": "Competitive Programming", "pages": ["core-cs/competitive-programming/index"] },
+          { "group": "Operating Systems", "pages": ["core-cs/operating-systems/index"] },
+          { "group": "DBMS", "pages": ["core-cs/dbms/index"] },
+          { "group": "Networking", "pages": ["core-cs/networking/index"] }
+        ]
+      },
+      {
+        "tab": "Systems",
+        "icon": "server",
+        "groups": [
+          { "group": "Systems Root", "pages": ["systems/index"] },
+          { "group": "System Design", "pages": ["systems/system-design/index"] },
+          { "group": "Scaling", "pages": ["systems/scaling/index"] },
+          { "group": "Cloud Infra", "pages": ["systems/cloud-infra/index"] },
+          { "group": "Web2", "pages": ["systems/web2/index"] },
+          { "group": "Web3", "pages": ["systems/web3/index"] }
+        ]
+      },
+      {
+        "tab": "Finance",
+        "icon": "chart-line",
+        "groups": [
+          { "group": "Finance Root", "pages": ["finance/index"] },
+          { "group": "Market Fundamentals", "pages": ["finance/market-fundamentals/index"] },
+          { "group": "Tax Planning", "pages": ["finance/tax-planning/index"] },
+          { "group": "Credit & Leverage", "pages": ["finance/credit-leverage/index"] }
+        ]
+      },
+      {
+        "tab": "Psychology",
+        "icon": "brain",
+        "groups": [
+          { "group": "Psychology Root", "pages": ["behavior/index"] },
+          { "group": "Human Nature", "pages": ["behavior/human-nature/index"] },
+          { "group": "Dark Psychology", "pages": ["behavior/dark-psychology/index"] }
+        ]
+      }
+    ]
   }
 }
