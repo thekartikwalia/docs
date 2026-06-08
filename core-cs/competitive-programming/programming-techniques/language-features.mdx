@@ -1,0 +1,186 @@
+---
+title: "Language Features"
+description: "C++ essentials for competitive programming: code templates, fast I/O, numeric types, modular arithmetic, and shortcuts for terser code."
+---
+
+
+A typical C++ code template for competitive programming looks like:
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    // solution comes here
+}
+```
+- The `#include` line at the beginning of the code is a feature of the `g++` compiler that allows us to include the entire standard library. 
+- The `using` line declares that the classes and functions of the standard library can be used directly in code.
+
+The code can be compiled using the following command:
+```bash
+g++ -std=c+11 -02 -Wall test.cpp -o test
+```
+This command produces a binary file `test` from the source code `test.cpp`. The compiler follows the C++11 standard (`-std=c+11`), optimizes the code (-02), and shows warnings about possible errors (-Wall).
+
+
+## Input and Output
+In C++, the standard streams are `cin` for input and `cout` for output. Also C functions, such as `scanf` and `printf`, can be used.
+
+The input for the program usually consists of numbers and strings separated with spaces and newlines. They can be read from the `cin` stream as follows:
+```cpp
+int a, b;
+string x;
+cin >> a >> b >> x;
+```
+This kind of code works, assuming that there is at least one space or newline between each element in the input. For example, above code can read both the following inputs:
+```
+123 456 monkey
+```
+```
+123     456 
+monkey
+```
+
+The `cout` stream is used for output as follows:
+```cpp
+int a = 123, b = 456;
+string x = "monkey";
+cout << a << " " << b << " " << x << "\n";
+```
+<Note>
+The input and output is sometimes a bottleneck in the program. The following lines at the beginning of the code make input and output more efficient.
+```cpp
+ios::sync_with_stdio(0);    // disable synchronization between C and C++ standard streams
+cin.tie(0);                 // untie cin and cout (no more flush before endl)
+```
+</Note>
+
+<Info>The newline `\n` works faster than `endl`, because `endl` flushes the output buffer.</Info>
+
+<Info>
+The C functions `scanf` and `printf` are an alternative to C++ standard streams. They are usually slightly faster, but also more difficult to use.
+```cpp
+// reads 2 integers from input
+int a, b;
+scanf("%d %d", &a, &b);
+
+// prints 2 integers
+int a = 123, b = 456;
+printf("%d %d\n", a, b);
+```
+</Info>
+
+<Note>
+Sometimes the program should read a whole input line, possibly containing spaces. This can be accomplished by using the `getline` function:
+```cpp
+string s;
+getline(cin, s);
+```
+</Note>
+
+<Note>
+If the ammount of data is unknown, the following loop is useful:
+```cpp
+while(cin >> x) {
+    // code to process x
+}
+```
+This loop reads elements from the input one after another, until there is no more data available in the input.
+</Note>
+
+In some contest systems, files are used for input and output. An easy solution for this is to write the code as usual using standard streams, but add the following lines to the beginning of the code:
+```cpp
+freopen("input.txt", "r", stdin);
+freopen("output.txt", "w", stdout);
+```
+This will read the input from the file `input.txt` and write the output to the file `output.txt`.
+
+
+## Working with Numbers 
+
+### Integers
+Most used integer type in competitive programing is `int`, which is a 32-bit type with a value of <Latex>$-2^{31} \text{ to } 2^{31}-1$</Latex> (about <Latex>$-2 \times 10^9 \ldots 2 \times 10^9$</Latex>). 
+
+If the type `int` is not enough, the 64-bit type `long long` can be used. It has a value range of <Latex>$-2^{63} \text{ to } 2^{63}-1$</Latex> (about <Latex>$-9 \times 10^{18} \ldots 9 \times 10^{18}$</Latex>).
+```cpp
+long long x = 123456789123456789LL;    // suffix LL means that the type of number is long long
+```
+
+<Info>`g++` compiler also provides a 128-bit type `__int128_t` with a value range of <Latex>$-2^{127} \text{ to } 2^{127}-1$</Latex> (about <Latex>$-10^{38} \ldots 10^{38}$</Latex>).</Info>
+
+### Modular Arithmetic
+Sometimes the answer to a problem is a very large number, but it is enough to output it "modulo _m_", i.e., the remainder when the answer is divided by _m_ (e.g., <Latex>$10^9 + 7$</Latex>). The idea is that even if the actual answer is very large, it suffices to use the types `int` and `long long`.
+
+Important Properties:
+- <Latex>$(a + b) \mod m = (a \mod m + b \mod m) \mod m$</Latex>
+- <Latex>$(a - b) \mod m = (a \mod m - b \mod m) \mod m$</Latex>
+- <Latex>$(a \times b) \mod m = (a \mod m \times b \mod m) \mod m$</Latex>
+
+<Tip>Thus we can take the remainder after every operation, and the numbers will never become too large.</Tip>
+
+<Note>
+Usually we want the remainder to always be between <Latex>$0 \ldots m-1$</Latex>. However, in C++ and other languages, the remainder of a negative number is either zero or negative. 
+
+An easy way to make sure there are no negative remainders is to first calculate the remainder as usual and then add _m_ if the result is negative:
+```cpp
+x = x%m;
+if(x < 0) x += m;
+```
+However, this is only needed when there are substraction in the code, and the remainder may become negative.
+</Note>
+
+### Floating-Point Numbers
+The most useful floating point types in C++ are the 64-bit `double` and, as an extension in `g++` compiler, the 80-bit `long double`.
+
+The required precision of the answer is usually given in the problem statement. An easy way to output the answer is to use the `printf` function and give the number of decimal places in the formatting string.
+```cpp
+printf("%.9f\n", x);    // value of x with 9 decimal places
+```
+
+A difficulty when using floating point numbers is that some numbers cannot be represented accurately as floating point numbers, and there will be rounding errors.
+```cpp
+double x = 0.3*3+0.1;
+printf("%.20f\n", x);    // 0.99999999999999988898
+```
+
+<Note> 
+It is risky to compare floating point numbers with the `==` operator, because it is possible that the values should be equal but they are not because of precision errors.
+
+A better way to compare floating point numbers is to assume that two numbers are equal if the difference between them is less than <Latex>$\epsilon$</Latex>, where <Latex>$\epsilon$</Latex> is a small number (e.g., <Latex>$\epsilon = 10^{-9}$</Latex>).
+
+```cpp
+if(abs(a-b) < 1e-9) {
+    // a and b are equal
+}
+```
+</Note>
+
+
+## Shortening Code 
+
+### Type Names
+    The command `typedef` can be used to give a short name to a data type.
+    ```cpp 
+    typedef long long ll;
+    ```
+    
+    The command `typedef` can also be used with more complex types.
+    ```cpp
+    typedef vector<int> vi;
+    typedef pair<int, int> pi;
+    ```
+
+### Macros
+    A macro specifies that certain strings in the code will be changed before the compilation. In C++, macros are defined using the `#define` keyword.
+    ```cpp
+    #define F first
+    #define S second
+    #define PB push_back
+    #define MP make_pair
+    ```
+
+    A macro can also have parameters, which makes it possible to shorten loops and other structures.
+    ```cpp
+    #define REP(i,a,b) for (int i = a; i <= b; i++)
+    ```

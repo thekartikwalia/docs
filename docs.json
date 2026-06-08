@@ -46,7 +46,20 @@
           { "group": "Foundations Root",           "pages": ["core-cs/index"] },
           { "group": "Assembly",                   "pages": ["core-cs/assembly/index"] },
           { "group": "Foundations",                "pages": ["core-cs/foundations/index"] },
-          { "group": "Competitive Programming",    "pages": ["core-cs/competitive-programming/index"] },
+          { 
+            "group": "Competitive Programming",    
+            "pages": [
+              "core-cs/competitive-programming/index",
+              {
+                "group": "Programming Techniques",
+                "pages": [
+                  "core-cs/competitive-programming/programming-techniques/language-features",
+                  "core-cs/competitive-programming/programming-techniques/recursive-algorithms",
+                  "core-cs/competitive-programming/programming-techniques/bit-manipulation"
+                ]
+              }
+            ] 
+          },
           { "group": "Operating Systems",          "pages": ["core-cs/operating-systems/index"] },
           { "group": "DBMS",                       "pages": ["core-cs/dbms/index"] },
           { "group": "Networking",                 "pages": ["core-cs/networking/index"] }
